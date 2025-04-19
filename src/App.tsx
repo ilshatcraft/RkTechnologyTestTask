@@ -1,30 +1,34 @@
 import { useState, useEffect } from "react";
 
+import {
+  HiddenCheckbox,
+  LoadingText,
+} from "./styled-components/scss/modules/StyledComponents";
+
+import { StyledButton } from "./styled-components/scss/modules/StyledButton";
+
+import {
+  SwitchContainer,
+  Slider,
+} from "./styled-components/scss/modules/Slider";
+
+import { CatImage } from "./styled-components/scss/modules/CatImage";
+
 import "./App.css";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <>
-      <ExampleComponent></ExampleComponent>
+      <CatsImagesComponent></CatsImagesComponent>
     </>
   );
 }
-import {
-  StyledButton,
-  SwitchContainer,
-  Slider,
-  HiddenCheckbox,
-  CatImage,
-  LoadingText,
-} from "./styled-components/scss/modules/StyledComponents";
 
 const API_KEY =
   "live_eltwymMoabFhmeg4S9QX3ZKSUu2sOqYD4SuYrg6B3I2OS1B4CFwn2T4K3Bgk5sm1";
 const API_URL = "https://api.thecatapi.com/v1/images/search";
 
-const ExampleComponent = () => {
+const CatsImagesComponent = () => {
   const [enabled, setEnabled] = useState(false);
   const [catImage, setCatImage] = useState("");
   const [isLoading, setIsLoading] = useState(false);
@@ -54,6 +58,12 @@ const ExampleComponent = () => {
       return () => clearInterval(interval);
     }
   }, [enabled, isLocked]);
+
+  useEffect(() => {
+    if (isLocked) {
+      setEnabled(false);
+    }
+  }, [isLocked]);
 
   return (
     <div
