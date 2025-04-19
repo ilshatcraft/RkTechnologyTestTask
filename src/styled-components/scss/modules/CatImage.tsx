@@ -1,9 +1,5 @@
 import styled from "styled-components";
 
-interface CatImageProps {
-  isLoading?: boolean;
-}
-
 export const CatImage = styled.img.withConfig({
   shouldForwardProp: (prop) => !["isLoading"].includes(prop),
 })<{ isLoading: boolean }>`

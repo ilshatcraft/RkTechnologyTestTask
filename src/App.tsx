@@ -54,7 +54,9 @@ const CatsImagesComponent = () => {
 
   useEffect(() => {
     if (enabled && !isLocked) {
-      const interval = setInterval(fetchCatImage, 5000);
+
+      const interval = setInterval(fetchCatImage, 10000);
+
       return () => clearInterval(interval);
     }
   }, [enabled, isLocked]);
@@ -85,10 +87,9 @@ const CatsImagesComponent = () => {
           justifyContent: "center",
         }}
       >
-        <SwitchContainer
-          onClick={() => setIsLocked(!isLocked)}
-          disabled={isLoading}
-        >
+
+        <SwitchContainer onClick={() => setIsLocked(!isLocked)}>
+
           <Slider $enabled={isLocked}>
             <HiddenCheckbox
               checked={isLocked}
@@ -111,10 +112,9 @@ const CatsImagesComponent = () => {
           justifyContent: "center",
         }}
       >
-        <SwitchContainer
-          onClick={() => !isLocked && setEnabled(!enabled)}
-          disabled={isLocked}
-        >
+
+        <SwitchContainer onClick={() => !isLocked && setEnabled(!enabled)}>
+
           <Slider $enabled={enabled}>
             <HiddenCheckbox
               checked={enabled}
